@@ -16,13 +16,28 @@ class CatsController < ApplicationController
   def create
     @cat = Cat.new(cat_params)
     if @cat.save
-      redirect_to cats_path, notice: "動物資料建立完成"
+      redirect_to cats_path, notice: "資料建立完成"
     else
       render :new
     end
+  end
 
-    
+  def edit
+    @cat = Cat.find_by(id: params[:id])
+  end
 
+  def update
+    @cat = Cat.find_by(id: params[:id])
+
+    if @cat.update(cat_params)
+      redirect_to cats_path, notice: "資料更新完成"
+    else
+      render :edit
+    end
+  end
+
+  def show
+    @cat = Cat.find_by(id: params[:id])
   end
 
 

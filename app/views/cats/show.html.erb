@@ -1,0 +1,61 @@
+<div class="container">
+
+  <h2>動物詳細資料</h2>
+  <div class="cats-list col-3">
+    <div class="modify">
+      <%= link_to "編輯", edit_cat_path(@cat) %>
+      <%= link_to "刪除", cat_path(@cat) %>
+    </div>
+    <%= @cat.image %>
+    <img src="https://unsplash.it/200/200" alt="cat">
+    <div>
+      <table>
+        <tr>
+          <td>動物照片：<td>
+          <td><%= @cat.image %></td>
+        </tr>
+        <tr>
+          <td>狀態：<td>
+          <td><%= @cat.is_adopt %></td>
+        </tr>
+        <tr>
+          <td>領養日期：<td>
+          <td><%= @cat.adopt_at %></td>
+        </tr>
+        <tr>
+          <td>綽號：<td>
+          <td><%= @cat.name %></td>
+        </tr>
+        <tr>
+          <td>品種：<td>
+          <td><%= @cat.type %></td>
+        </tr>
+        <tr>
+          <td>性別：<td>
+          <td><%= @cat.sex %></td>
+        </tr>
+        <tr>
+          <td>年齡：<td>
+          <td><%= @cat.age %></td>
+        </tr>
+        <tr>
+          <td>地區：<td>
+          <td><%= @cat.city %></td>
+        </tr>
+        <tr>
+          <td>結紮：<td>
+          <td><%= @cat.is_neuter %></td>
+        </tr>
+        <tr>
+          <td>狂犬病注射：<td>
+          <td><%= @cat.is_vaccine %></td>
+        </tr>
+        <tr>
+          <td>描述：<td>
+          <td><%= @cat.description %></td>
+        </tr>
+      </table>
+      
+    </div>
+  </div>
+</div>

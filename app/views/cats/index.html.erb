@@ -1,36 +1,44 @@
 <div class="container">
-  <h2>貓咪認養名單</h2>
-  <%= link_to "新增貓咪基本資料",new_cat_path, class: "btn" %>
+  <h2>動物認養名單</h2>
+  <%= link_to "新增動物基本資料",new_cat_path, class: "btn" %>
   
   
   <div class="row clearfix">
     <% @cats.each do |cat| %>
     <div class="cats-list col-3">
-      <%= cat.image %>
-      <img src="https://unsplash.it/200/200" alt="cat">
+      <div class="modify">
+        <%= link_to "編輯", edit_cat_path(cat) %>
+        <%= link_to "刪除", cat_path(cat) %>
+        <%= link_to "顯示", cat_path(cat) %>
+      </div>
+      <div class="photo">
+        <%= cat.image %>
+        <img src="https://unsplash.it/200/200" alt="cat">
+      </div>
       <div>
         <table>
           <tr>
-            <td>綽號<td>
+            <td>綽號：<td>
             <td><%= cat.name %></td>
           </tr>
           <tr>
-            <td>品種<td>
+            <td>品種：<td>
             <td><%= cat.type %></td>
           </tr>
           <tr>
-            <td>性別<td>
+            <td>性別：<td>
             <td><%= cat.sex %></td>
           </tr>
           <tr>
-            <td>年齡<td>
+            <td>年齡：<td>
             <td><%= cat.age %></td>
           </tr>
           <tr>
-            <td>地區<td>
+            <td>地區：<td>
             <td><%= cat.city %></td>
           </tr>
         </table>
+        
       </div>
     </div>
     <% end %>
