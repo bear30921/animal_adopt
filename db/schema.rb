@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817090945) do
+ActiveRecord::Schema.define(version: 20170821041420) do
 
   create_table "cats", force: :cascade do |t|
     t.string "name"
@@ -19,15 +19,13 @@ ActiveRecord::Schema.define(version: 20170817090945) do
     t.integer "sex"
     t.integer "city"
     t.text "description"
-    t.boolean "neuter"
-    t.boolean "vaccine"
-    t.boolean "adopt"
+    t.boolean "is_neuter"
+    t.boolean "is_vaccine"
+    t.boolean "is_adopt"
     t.datetime "adopt_at"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.index ["user_id"], name: "index_cats_on_user_id"
   end
 
 end
