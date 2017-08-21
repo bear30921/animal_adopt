@@ -40,6 +40,15 @@ class CatsController < ApplicationController
     @cat = Cat.find_by(id: params[:id])
   end
 
+  def destroy
+    @cat = Cat.find_by(id: params[:id])
+
+    @cat.destroy if @cat
+
+    redirect_to cats_path, notice: "資料刪除成功"
+    
+  end
+
 
   private
 

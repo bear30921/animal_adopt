@@ -8,7 +8,7 @@
     <div class="cats-list col-3">
       <div class="modify">
         <%= link_to "編輯", edit_cat_path(cat) %>
-        <%= link_to "刪除", cat_path(cat) %>
+        <%= link_to "刪除", cat_path(cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"} %>
         <%= link_to "顯示", cat_path(cat) %>
       </div>
       <div class="photo">
