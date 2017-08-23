@@ -61,6 +61,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem 'jquery-rails'
+gem "paperclip", "~> 5.0.0"
+
 
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821041420) do
+ActiveRecord::Schema.define(version: 20170822081212) do
 
   create_table "cats", force: :cascade do |t|
     t.string "name"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170821041420) do
     t.text "description"
     t.boolean "is_neuter"
     t.boolean "is_vaccine"
-    t.boolean "is_adopt"
+    t.string "is_adopt"
     t.datetime "adopt_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

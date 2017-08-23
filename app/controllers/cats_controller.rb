@@ -15,6 +15,7 @@ class CatsController < ApplicationController
 
   def create
     @cat = Cat.new(cat_params)
+    @cat.is_adopt = "開放領養"
     if @cat.save
       redirect_to cats_path, notice: "資料建立完成"
     else

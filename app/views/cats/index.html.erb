@@ -1,46 +1,51 @@
 <div class="container">
   <h2>動物認養名單</h2>
-  <%= link_to "新增動物基本資料",new_cat_path, class: "btn" %>
+  <%= link_to "新增動物基本資料",new_cat_path, class: "btn btn-green" %>
   
   
   <div class="row clearfix">
     <% @cats.each do |cat| %>
-    <div class="cats-list col-3">
-      <div class="modify">
-        <%= link_to "編輯", edit_cat_path(cat) %>
-        <%= link_to "刪除", cat_path(cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"} %>
-        <%= link_to "顯示", cat_path(cat) %>
+      <div class="cats-list col-3">
+        <div class="modify">
+          <%= link_to "編輯", edit_cat_path(cat), class: "btn btn-black" %>
+          <%= link_to "刪除", cat_path(cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"},class: "btn btn-black" %>
+        </div>
+        <div class="photo">
+          <%= link_to cat do %>
+            <%= cat.image %>
+            <img src="https://unsplash.it/200/200" alt="cat">
+          <% end %>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <td>狀態：<td>
+              <td class="active"><%= cat.is_adopt %></td>
+            </tr>
+            <tr>
+              <td>綽號：<td>
+              <td><%= cat.name %></td>
+            </tr>
+            <tr>
+              <td>品種：<td>
+              <td><%= cat.type %></td>
+            </tr>
+            <tr>
+              <td>性別：<td>
+              <td><%= cat.sex %></td>
+            </tr>
+            <tr>
+              <td>年齡：<td>
+              <td><%= cat.age %></td>
+            </tr>
+            <tr>
+              <td>地區：<td>
+              <td><%= cat.city %></td>
+            </tr>
+          </table>
+          
+        </div>
       </div>
-      <div class="photo">
-        <%= cat.image %>
-        <img src="https://unsplash.it/200/200" alt="cat">
-      </div>
-      <div>
-        <table>
-          <tr>
-            <td>綽號：<td>
-            <td><%= cat.name %></td>
-          </tr>
-          <tr>
-            <td>品種：<td>
-            <td><%= cat.type %></td>
-          </tr>
-          <tr>
-            <td>性別：<td>
-            <td><%= cat.sex %></td>
-          </tr>
-          <tr>
-            <td>年齡：<td>
-            <td><%= cat.age %></td>
-          </tr>
-          <tr>
-            <td>地區：<td>
-            <td><%= cat.city %></td>
-          </tr>
-        </table>
-        
-      </div>
-    </div>
     <% end %>
 
   </div>
