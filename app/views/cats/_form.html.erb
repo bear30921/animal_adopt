@@ -1,7 +1,10 @@
 <%= link_to "回首頁", cats_path %>
-  <%= form_for cat do |f| %>
+
+<div id="target">
+</div>
+<%= form_for cat, html: { multipart: true } do |f| %>
   <ul class="form">
-    <li><%= f.text_field :image, placeholder: "圖片" %></li>
+    <li><%= f.file_field :avatar %></li>
     <li><%= f.text_field :name, placeholder: "綽號" %></li>
     <li><%= f.text_field :type, placeholder: "品種" %></li>
     <li><%= f.text_field :sex, placeholder: "性別" %></li>
@@ -13,3 +16,5 @@
     <li><%= f.submit "送出" %></li>
   </ul>
 <% end %>
+
+

@@ -7,15 +7,10 @@
       <%= link_to "刪除", cat_path(@cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"} %>
     </div>
     <div class="photo">
-      <%= @cat.image %>
-      <img src="https://unsplash.it/200/200" alt="cat">
+      <%= image_tag @cat.avatar.url(:medium) %>
     </div>
     <div>
       <table>
-        <tr>
-          <td>動物照片：<td>
-          <td><%= @cat.image %></td>
-        </tr>
         <tr>
           <td>狀態：<td>
           <td class="active"><%= @cat.is_adopt %></td>

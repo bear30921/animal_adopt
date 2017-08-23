@@ -2,9 +2,21 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function () {
   
-  $('.cats-list').on('click', function () {
-    var x = $(this).children('.modify').find('a').attr('href');
-    console.log(x);
+
+
+  $('#cat_avatar').on('change', function (e) {
+    var files = e.target.files;
+    var image = files[0];
+    var reader = new FileReader();
+    reader.onload = function (file) {
+      var img = new Image();
+      console.log(file);
+      img.src = file.target.result;
+      $('#target').html(img);
+    };
+    reader.readAsDataURL(image);
+    console.log(files);
   });
+
 
 });

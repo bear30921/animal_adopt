@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>動物認養名單</h2>
+  <h2>動物領養名單</h2>
   <%= link_to "新增動物基本資料",new_cat_path, class: "btn btn-green" %>
   
   
@@ -12,11 +12,10 @@
         </div>
         <div class="photo">
           <%= link_to cat do %>
-            <%= cat.image %>
-            <img src="https://unsplash.it/200/200" alt="cat">
+            <%= image_tag cat.avatar.url(:medium) %>
           <% end %>
         </div>
-        <div>
+        <div class="info">
           <table>
             <tr>
               <td>狀態：<td>
