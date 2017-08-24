@@ -1,7 +1,13 @@
 <%= link_to "回首頁", cats_path %>
 
 <div id="target">
+  <% if not cat.avatar_file_name.nil? %>
+    <%= image_tag cat.avatar.url(:medium) %>
+  <% end %>
 </div>
+
+
+
 <%= form_for cat, html: { multipart: true } do |f| %>
   <ul class="form">
     <li><%= f.file_field :avatar %></li>
