@@ -2,10 +2,19 @@
   <h2 class="title">動物領養名單</h2>
 
   <div class="search">
-    <%= select_tag "search", "<option>David</option>".html_safe %>
-
     <%= form_tag cats_path, method: "get" do %>
-      <%= text_field_tag "keyword", nil, placeholder: '請輸入關鍵字'%>
+      <%= select_tag "region", options_for_select(
+        [
+          ["地區", ""],["基隆", "1"], ["台北", "2"], ["新北", "3"], ["桃園", "4"], ["新竹", "5"],
+          ["苗栗", "6"], ["台中", "7"], ["彰化", "8"], ["南投", "9"], ["雲林", "10"],
+          ["嘉義", "11"], ["台南", "12"], ["高雄", "13"], ["屏東", "14"], ["宜蘭", "15"],
+          ["台東", "16"], ["澎湖", "17"]
+        ]) %>
+      <%= select_tag "animal", options_for_select(
+        [
+          ["種類", ""],["貓", "1"], ["狗", "2"]
+        ]) %>
+      <%= text_field_tag "keyword", nil, placeholder: '請輸入年齡'%>
       <%= submit_tag "搜尋", name: nil %>
     <% end %>
   </div>
@@ -35,12 +44,16 @@
               <td class="active"><%= cat.is_adopt %></td>
             </tr>
             <tr>
+              <td>地區：<td>
+              <td><%= city(cat.city) %></td>
+            </tr>    
+            <tr>
               <td>綽號：<td>
               <td><%= cat.name %></td>
             </tr>
             <tr>
               <td>種類：<td>
-              <td><%= cat.type %></td>
+              <td><%= type(cat.animal_type) %></td>
             </tr>
             <tr>
               <td>性別：<td>
@@ -49,10 +62,6 @@
             <tr>
               <td>年齡：<td>
               <td><%= cat.age %></td>
-            </tr>
-            <tr>
-              <td>地區：<td>
-              <td><%= cat.city %></td>
             </tr>
           </table>
           

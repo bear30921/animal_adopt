@@ -5,8 +5,8 @@ class CatsController < ApplicationController
 
   def index
     
-    if params[:keyword]
-      @cats = Cat.paginate(:page => params[:page], :per_page => 4).order('id DESC').where("name like ?", "%#{params[:keyword]}%")
+    if params[:keyword] || params[:region] || params[:animal]
+      @cats = Cat.paginate(:page => params[:page], :per_page => 4).order('id DESC').where("city LIKE ? AND age LIKE ? AND animal_type LIKE ?", "%#{params[:region]}%", "%#{params[:keyword]}%", "%#{params[:animal]}%")
     else
       @cats = Cat.paginate(:page => params[:page], :per_page => 4).order('id DESC')
     end
@@ -63,7 +63,7 @@ class CatsController < ApplicationController
   private
 
   def cat_params
-    params.require(:cat).permit(:image, :name, :type, :sex, :age, :city, :is_neuter, :is_vaccine, :description, :avatar)
+    params.require(:cat).permit(:image, :name, :animal_type, :sex, :age, :city, :is_neuter, :is_vaccine, :description, :avatar)
   end
 
 
