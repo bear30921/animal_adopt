@@ -1,5 +1,18 @@
 <div class="container">
   <h2 class="title">動物領養名單</h2>
+
+  <div class="search">
+    <%= select_tag "search", "<option>David</option>".html_safe %>
+
+    <%= form_tag cats_path, method: "get" do %>
+      <%= text_field_tag "keyword", nil, placeholder: '請輸入關鍵字'%>
+      <%= submit_tag "搜尋", name: nil %>
+    <% end %>
+  </div>
+
+
+
+
   <%= link_to "新增動物基本資料",new_cat_path, class: "btn btn-green" %>
   
   
@@ -31,7 +44,7 @@
             </tr>
             <tr>
               <td>性別：<td>
-              <td><%= cat.sex %></td>
+              <td><%= sex(cat.sex) %></td>
             </tr>
             <tr>
               <td>年齡：<td>

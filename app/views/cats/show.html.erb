@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <td>性別：<td>
-          <td><%= @cat.sex %></td>
+          <td><%= sex(@cat.sex) %></td>
         </tr>
         <tr>
           <td>年齡：<td>
@@ -37,15 +37,11 @@
         </tr>
         <tr>
           <td>結紮：<td>
-          <td><%= @cat.is_neuter %></td>
+          <td><%= is_neuter?(@cat.is_neuter) %></td>
         </tr>
         <tr>
           <td>狂犬疫苗：<td>
-          <td><%= @cat.is_vaccine %></td>
-        </tr>
-        <tr>
-          <td>領養日期：<td>
-          <td><%= @cat.adopt_at %></td>
+          <td><%= is_vaccine?(@cat.is_vaccine) %></td>
         </tr>
         <tr>
           <td>與我聯絡：<td>

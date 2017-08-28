@@ -4,8 +4,12 @@ class CatsController < ApplicationController
 
 
   def index
-    @cats = Cat.paginate(:page => params[:page], :per_page => 4).order('id DESC')
-
+    
+    if params[:keyword]
+      @cats = Cat.paginate(:page => params[:page], :per_page => 4).order('id DESC').where("name like ?", "%#{params[:keyword]}%")
+    else
+      @cats = Cat.paginate(:page => params[:page], :per_page => 4).order('id DESC')
+    end
   end
 
 

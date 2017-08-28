@@ -12,12 +12,11 @@
   <ul class="form">
     <li><%= f.file_field :avatar %></li>
     <li><%= f.text_field :name, placeholder: "綽號" %></li>
-    <li><%= f.text_field :type, placeholder: "品種" %></li>
-    <li><%= f.text_field :sex, placeholder: "性別" %></li>
+    <li><%= f.select :sex, options_for_select([["男", "1"], ["女", "0"]]) %></li>
     <li><%= f.text_field :age, placeholder: "年齡" %></li>
     <li><%= f.text_field :city, placeholder: "地區" %></li>
-    <li><%= f.text_field :is_neuter, placeholder: "結紮" %></li>
-    <li><%= f.text_field :is_vaccine, placeholder: "狂犬病疫苗" %></li>
+    <li><%= f.select :is_neuter, options_for_select([["是", "true"], ["否", "false"]]) %></li>
+    <li><%= f.select :is_vaccine, options_for_select([["是", "true"], ["否", "false"]]) %></li>
     <li><%= f.text_area :description, placeholder: "描述" %></li>
     <li><%= f.submit "送出" %></li>
   </ul>
