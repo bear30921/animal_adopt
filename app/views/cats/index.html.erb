@@ -26,7 +26,7 @@
               <td><%= cat.name %></td>
             </tr>
             <tr>
-              <td>品種：<td>
+              <td>種類：<td>
               <td><%= cat.type %></td>
             </tr>
             <tr>
@@ -46,8 +46,10 @@
         </div>
       </div>
     <% end %>
-
   </div>
+
+  <%= will_paginate @cats %>
+
   
 
 

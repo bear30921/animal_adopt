@@ -16,15 +16,11 @@
           <td class="active"><%= @cat.is_adopt %></td>
         </tr>
         <tr>
-          <td>領養日期：<td>
-          <td><%= @cat.adopt_at %></td>
-        </tr>
-        <tr>
           <td>綽號：<td>
           <td><%= @cat.name %></td>
         </tr>
         <tr>
-          <td>品種：<td>
+          <td>種類：<td>
           <td><%= @cat.type %></td>
         </tr>
         <tr>
@@ -44,8 +40,16 @@
           <td><%= @cat.is_neuter %></td>
         </tr>
         <tr>
-          <td>狂犬病注射：<td>
+          <td>狂犬疫苗：<td>
           <td><%= @cat.is_vaccine %></td>
+        </tr>
+        <tr>
+          <td>領養日期：<td>
+          <td><%= @cat.adopt_at %></td>
+        </tr>
+        <tr>
+          <td>與我聯絡：<td>
+          <td><%= link_to "FaceBook", "https://www.facebook.com/#{@cat.contact}", :target => "_blank" %></td>
         </tr>
         <tr>
           <td colspan="2">描述：<td>

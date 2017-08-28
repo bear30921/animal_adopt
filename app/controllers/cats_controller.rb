@@ -4,7 +4,8 @@ class CatsController < ApplicationController
 
 
   def index
-    @cats = Cat.all
+    @cats = Cat.paginate(:page => params[:page], :per_page => 4).order('id DESC')
+
   end
 
 
@@ -17,6 +18,7 @@ class CatsController < ApplicationController
     @cat.is_adopt = "開放領養"
     # @cat.user_id = current_user.id
     @cat.user = current_user
+    @cat.contact = current_user.facebook
     if @cat.save
       redirect_to cats_path, notice: "資料建立完成"
     else
