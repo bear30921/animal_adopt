@@ -1,7 +1,19 @@
-<div class="container">
-  <h2 class="title">動物領養名單</h2>
+<%# <div class="cover"></div> %>
 
-  <div class="search">
+<div class="container">
+  <h2 class="title unique">動物領養名單</h2>
+
+
+
+  <div>
+    <% if current_user %>
+    <%= link_to "我的收藏名單",lists_path, class: "btn btn-green" %>
+    <%= link_to "新增動物基本資料",new_cat_path, class: "btn btn-green" %>
+    <% end %>
+  </div>
+
+
+  <div class="search row">
     <%= form_tag cats_path, method: "get" do %>
       <%= select_tag "region", options_for_select(
         [
@@ -18,19 +30,17 @@
       <%= submit_tag "搜尋", name: nil %>
     <% end %>
   </div>
-
-
-
-
-  <%= link_to "新增動物基本資料",new_cat_path, class: "btn btn-green" %>
+  
   
   
   <div class="row clearfix">
     <% @cats.each do |cat| %>
       <div class="cats-list col-3">
         <div class="modify">
+        <% if current_user && cat.user_id == current_user.id %>
           <%= link_to "編輯", edit_cat_path(cat), class: "btn btn-black" %>
           <%= link_to "刪除", cat_path(cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"},class: "btn btn-black" %>
+        <% end %>
         </div>
         <div class="photo">
           <%= link_to cat do %>
@@ -40,27 +50,27 @@
         <div class="info">
           <table>
             <tr>
-              <td>狀態：<td>
-              <td class="active"><%= cat.is_adopt %></td>
+              <td>狀態：</td>
+              <td><span class="active"><%= cat.is_adopt %></span></td>
             </tr>
             <tr>
-              <td>地區：<td>
+              <td>地區：</td>
               <td><%= city(cat.city) %></td>
             </tr>    
             <tr>
-              <td>綽號：<td>
+              <td>綽號：</td>
               <td><%= cat.name %></td>
             </tr>
             <tr>
-              <td>種類：<td>
+              <td>種類：</td>
               <td><%= type(cat.animal_type) %></td>
             </tr>
             <tr>
-              <td>性別：<td>
+              <td>性別：</td>
               <td><%= sex(cat.sex) %></td>
             </tr>
             <tr>
-              <td>年齡：<td>
+              <td>年齡：</td>
               <td><%= cat.age %></td>
             </tr>
           </table>

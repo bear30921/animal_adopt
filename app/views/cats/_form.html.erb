@@ -1,33 +1,76 @@
-<%= link_to "回首頁", cats_path %>
 
-<div id="target">
-  <% if not cat.avatar_file_name.nil? %>
-    <%= image_tag cat.avatar.url(:medium) %>
-  <% end %>
+<div class="cats-edit clearfix">
+
+
+  <div class="col-5">
+    <div id="target">
+    <% if not cat.avatar_file_name.nil? %>
+      <%= image_tag cat.avatar.url(:medium) %>
+    <% else %>
+      <img src="http://fakeimg.pl/400x400/" alt="">
+    <% end %>
+    </div>
+  </div>
+  
+  <div class="col-7">
+    <h2 class="title">動物基本資料</h2>
+    <%= form_for cat, html: { multipart: true } do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label :avatar, "圖片上傳" %></td>
+          <td><%= f.file_field :avatar %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :name, "綽號" %></td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :animal_type, "種類" %></td>
+          <td><%= f.select :animal_type, options_for_select([["貓", "1"], ["狗", "2"]], :selected => f.object.animal_type) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :sex, "性別" %></td>
+          <td><%= f.select :sex, options_for_select([["男", "1"], ["女", "0"]], :selected => f.object.sex) %></td>
+        </tr>        
+        <tr>
+          <td><%= f.label :age, "年齡" %></td>
+          <td><%= f.text_field :age %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :city, "城市" %></td>
+          <td>
+            <%= f.select :city, options_for_select(
+            [
+              ["基隆", "1"], ["台北", "2"], ["新北", "3"], ["桃園", "4"], ["新竹", "5"],
+              ["苗栗", "6"], ["台中", "7"], ["彰化", "8"], ["南投", "9"], ["雲林", "10"],
+              ["嘉義", "11"], ["台南", "12"], ["高雄", "13"], ["屏東", "14"], ["宜蘭", "15"],
+              ["台東", "16"], ["澎湖", "17"]
+            ], :selected => f.object.city) %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :is_neuter, "結紮" %></td>
+          <td><%= f.select :is_neuter, options_for_select([["是", "true"], ["否", "false"]], :selected => f.object.is_neuter) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :is_vaccine, "狂犬疫苗" %></td>
+          <td><%= f.select :is_vaccine, options_for_select([["是", "true"], ["否", "false"]], :selected => f.object.is_vaccine) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :description, "備註" %></td>
+          <td><%= f.text_area :description %></td>
+        </tr>
+      </table>  
+      <div class="send"><%= f.submit "送出" %></div>
+      <% end %>
+  </div>
+</div>
+
+<div class="favorite">
+  <%= link_to "回首頁",  cats_path,class: "btn btn-green" %>
 </div>
 
 
-
-<%= form_for cat, html: { multipart: true } do |f| %>
-  <ul class="form">
-    <li><%= f.file_field :avatar %></li>
-    <li><%= f.text_field :name, placeholder: "綽號" %></li>
-    <li><%= f.select :sex, options_for_select([["男", "1"], ["女", "0"]], :selected => f.object.sex) %></li>
-    <li><%= f.select :animal_type, options_for_select([["貓", "1"], ["狗", "2"]], :selected => f.object.animal_type) %></li>
-    <li><%= f.text_field :age, placeholder: "年齡" %></li>
-    <li><%= f.select :city, options_for_select(
-      [
-        ["基隆", "1"], ["台北", "2"], ["新北", "3"], ["桃園", "4"], ["新竹", "5"],
-        ["苗栗", "6"], ["台中", "7"], ["彰化", "8"], ["南投", "9"], ["雲林", "10"],
-        ["嘉義", "11"], ["台南", "12"], ["高雄", "13"], ["屏東", "14"], ["宜蘭", "15"],
-        ["台東", "16"], ["澎湖", "17"]
-      ], :selected => f.object.city) %></li>
-    <li><%= f.select :is_neuter, options_for_select([["是", "true"], ["否", "false"]], :selected => f.object.is_neuter) %></li>
-    <li><%= f.select :is_vaccine, options_for_select([["是", "true"], ["否", "false"]], :selected => f.object.is_vaccine) %></li>
-    <li><%= f.text_area :description, placeholder: "描述" %></li>
-    <li><%= f.submit "送出" %></li>
-  </ul>
-<% end %>
 
 
 

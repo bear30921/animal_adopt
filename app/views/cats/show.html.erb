@@ -1,68 +1,74 @@
 <div class="container">
 
-<% if current_user %>
-  <%= link_to "favorite",   favorite_cat_path(@cat, type: "favorite"), method: :put, class: "apple" %>
-  <%= link_to "unfavorite", favorite_cat_path(@cat, type: "unfavorite"), method: :put %>
-<% end %>
 
-<% current_user.favorite_animal.each do |user| %>
-  <%= user.name %>
-<% end %>
 
-  <h2>動物詳細資料</h2>
-  <div class="cats-list col-3">
-    <div class="modify">
-      <%= link_to "編輯", edit_cat_path(@cat) %>
-      <%= link_to "刪除", cat_path(@cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"} %>
-    </div>
-    <div class="photo">
-      <%= image_tag @cat.avatar.url(:medium) %>
-    </div>
-    <div>
-      <table>
-        <tr>
-          <td>狀態：<td>
-          <td class="active"><%= @cat.is_adopt %></td>
-        </tr>
-        <tr>
-          <td>綽號：<td>
-          <td><%= @cat.name %></td>
-        </tr>
-        <tr>
-          <td>種類：<td>
-          <td><%= type(@cat.animal_type) %></td>
-        </tr>
-        <tr>
-          <td>性別：<td>
-          <td><%= sex(@cat.sex) %></td>
-        </tr>
-        <tr>
-          <td>年齡：<td>
-          <td><%= @cat.age %></td>
-        </tr>
-        <tr>
-          <td>地區：<td>
-          <td><%= @cat.city %></td>
-        </tr>
-        <tr>
-          <td>結紮：<td>
-          <td><%= is_neuter?(@cat.is_neuter) %></td>
-        </tr>
-        <tr>
-          <td>狂犬疫苗：<td>
-          <td><%= is_vaccine?(@cat.is_vaccine) %></td>
-        </tr>
-        <tr>
-          <td>與我聯絡：<td>
-          <td><%= link_to "FaceBook", "https://www.facebook.com/#{@cat.contact}", :target => "_blank" %></td>
-        </tr>
-        <tr>
-          <td colspan="2">描述：<td>
-        </tr>
-      </table>
-      <div class="description">
-        <%= @cat.description %>
+  
+  <div class="cats-show">
+    
+    
+    <div class="row clearfix">
+      <div class="photo col-5">
+        <%= image_tag @cat.avatar.url(:medium) %>
       </div>
+      <div class="col-7">
+        <h2 class="title">動物詳細資料</h2>
+        <table>
+          <tr>
+            <td>狀態：</td>
+            <td><span class="active"><%= @cat.is_adopt %></span></td>
+          </tr>
+           <tr>
+            <td>聯絡：</td>
+            <td><%= link_to "FaceBook", "https://www.facebook.com/#{@cat.contact}", :target => "_blank", class: "media" %></td>
+          </tr>         
+          <tr>
+            <td>綽號：</td>
+            <td><%= @cat.name %></td>
+          </tr>
+          <tr>
+            <td>種類：</td>
+            <td><%= type(@cat.animal_type) %></td>
+          </tr>
+          <tr>
+            <td>性別：</td>
+            <td><%= sex(@cat.sex) %></td>
+          </tr>
+          <tr>
+            <td>年齡：</td>
+            <td><%= @cat.age %></td>
+          </tr>
+          <tr>
+            <td>地區：</td>
+            <td><%= city(@cat.city) %></td>
+          </tr>
+          <tr>
+            <td>結紮：</td>
+            <td><%= is_neuter?(@cat.is_neuter) %></td>
+          </tr>
+          <tr>
+            <td>狂犬疫苗：</td>
+            <td><%= is_vaccine?(@cat.is_vaccine) %></td>
+          </tr>
+        </table>
+        <div class="description">
+          <span>備註：<%= @cat.description %></span>
+        </div>
+      </div>  
     </div>
+    
+  </div>
+
+  <div class="favorite">
+    <% if not current_user && @cat.user_id == current_user.id %>
+    <%= link_to "O收藏",   favorite_cat_path(@cat, type: "favorite"), method: :put, class: "btn btn-green" %>
+    <%= link_to "X取消收藏", favorite_cat_path(@cat, type: "unfavorite"), method: :put, class: "btn btn-green" %>
+    <% end %>
+    
+    <% if current_user && @cat.user_id == current_user.id %>
+      <%= link_to "編輯", edit_cat_path(@cat), class: "btn btn-green" %>
+      <%= link_to "刪除", cat_path(@cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"}, class: "btn btn-green"%>
+    <% end %>
+
+    <%= link_to "回首頁",  cats_path,class: "btn btn-green" %>
   </div>
 </div>

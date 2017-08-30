@@ -1,7 +1,11 @@
 class CatsController < ApplicationController
 
-  before_action :authenticate_user! , only: [:new]
+  before_action :authenticate_user! , only: [:new, :favorite]
 
+
+  def favorite_list
+    @favorites = current_user.favorite_animal
+  end
 
   def index
     
@@ -62,15 +66,11 @@ class CatsController < ApplicationController
     type = params[:type]
     if type == "favorite"
       current_user.favorite_animal << @cat
-      redirect_to cat_path, notice: "You favorited #{@cat.name}"
+      redirect_to cat_path, notice: "#{@cat.name}收藏成功"
 
-    elsif type == "unfavorite"
+    else type == "unfavorite"
       current_user.favorite_animal.delete(@cat)
-      redirect_to cat_path, notice: "Unfavorited #{@cat.name}"
-
-    else
-      # Type missing, nothing happens
-      redirect_to :back, notice: 'Nothing happened.'
+      redirect_to cat_path, notice: "#{@cat.name}取消收藏"
     end
   end
 

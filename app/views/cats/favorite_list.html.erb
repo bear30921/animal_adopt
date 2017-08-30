@@ -1,0 +1,39 @@
+<div class="favorite-list">
+  <div class="container">
+
+    <h2 class="title">收藏名單</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>照片</th>
+          <th>狀態</th>
+          <th>城市</th>
+          <th>綽號</th>
+          <th>種類</th>
+          <th>性別</th>
+        </tr>
+      </thead>
+
+      <% if current_user %>
+        <% @favorites.each do |favorite| %>
+        <tbody>
+          <tr>
+            <td><%= image_tag favorite.avatar.url(:thumb) %></td>
+            <td><span class="active"><%= favorite.is_adopt %></span></td>
+            <td><%= city(favorite.city) %></td>
+            <td><%= favorite.name %></td>
+            <td><%= type(favorite.animal_type)%></td>
+            <td><%= sex(favorite.sex) %></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <% end %>
+      <% end %>
+    </table>
+    <div class="favorite">
+      <%= link_to "回首頁",  cats_path,class: "btn btn-green" %>
+    </div>
+
+  </div>
+</div>
+

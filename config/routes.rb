@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/lists", to: "cats#favorite_list"
+
 
   root "cats#index"
 
