@@ -1,5 +1,14 @@
 <div class="container">
 
+<% if current_user %>
+  <%= link_to "favorite",   favorite_cat_path(@cat, type: "favorite"), method: :put, class: "apple" %>
+  <%= link_to "unfavorite", favorite_cat_path(@cat, type: "unfavorite"), method: :put %>
+<% end %>
+
+<% current_user.favorite_animal.each do |user| %>
+  <%= user.name %>
+<% end %>
+
   <h2>動物詳細資料</h2>
   <div class="cats-list col-3">
     <div class="modify">
@@ -21,7 +30,7 @@
         </tr>
         <tr>
           <td>種類：<td>
-          <td><%= type(@cat.:animal_type) %></td>
+          <td><%= type(@cat.animal_type) %></td>
         </tr>
         <tr>
           <td>性別：<td>

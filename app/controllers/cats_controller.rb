@@ -57,6 +57,24 @@ class CatsController < ApplicationController
     
   end
 
+  def favorite
+    @cat = Cat.find_by(id: params[:id])
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorite_animal << @cat
+      redirect_to cat_path, notice: "You favorited #{@cat.name}"
+
+    elsif type == "unfavorite"
+      current_user.favorite_animal.delete(@cat)
+      redirect_to cat_path, notice: "Unfavorited #{@cat.name}"
+
+    else
+      # Type missing, nothing happens
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+  end
+
+
   
 
 
