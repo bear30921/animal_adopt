@@ -1,6 +1,7 @@
 # Setups
 
+First you can use the following command
 
-* $ bundle install
+$ bundle install
 
-* $ rails db:migrate 
+$ rails db:migrate 
