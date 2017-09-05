@@ -1,5 +1,5 @@
 $color_green: #81D1B3
-$color_green2: #A4DDE2
+$color_green2: #95CBD3
 $color_white: #F1F1F2
 $color_black: #3F5B5F
 $color_red: #E5266C
@@ -13,10 +13,17 @@ $color_red: #E5266C
 
 body
   margin: 0
+  // height: 100%
   background: $color_white
 
+html, body
+  // width: 100%
+  // height: 100%
+  padding: 0
+  margin: 0
+
 .header + div
-  padding-top: 60px
+  padding-top: 40px
 
 
 
@@ -120,13 +127,20 @@ td
       float: left
       a
         text-decoration: none
-        padding: 10px 40px  
+        padding: 20px 50px  
         font-size: 20px
         color: $color_black
         transition: all .3s
         &:hover
           background-color: $color_black
           color: white
+
+
+// _footer.html.erb
+.footer
+  background-color: $color_black
+  height: 20px
+  // margin-top: 50px
 
 // _form.html.erb
 .cats-edit
@@ -168,19 +182,33 @@ td
 
 
 
-.cover
-  background-image: url("/photo/mimi.jpg")
-  background-size: contain
-  background-position: 60% 30%
-  background-repeat: no-repeat
-  height: 500px
+// .cover
+//   background-image: url("/photo/mimi.jpg")
+//   background-size: contain
+//   background-position: 60% 30%
+//   background-repeat: no-repeat
+//   height: 500px
 
-
+.unique
+  margin-bottom: 20px
+.search
+  select
+    width: 10%
+    min-width: 60px
+    height: 25px
+  input
+    padding: 4px 15px
+  input[type="submit"]
+    border: none
+    cursor: pointer
+    background-color: $color_green
+    color: white
 
 .cats-list
   background-color: white
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
   transition: all .3s
+  margin-bottom: 2% 
   &:hover
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
   .modify
@@ -331,7 +359,13 @@ td
   .hold
     margin-bottom: 20px
     height: 40px
+// page
   
+.previous_page, .next_page
+  // border: 1px solid $color_black
+  // background-color: white
+  padding: 2px
+
 
 
 
