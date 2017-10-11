@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CatAdopt</title>
-    <%= csrf_meta_tags %>
+
+<head>
+  <title>CatAdopt</title>
+  <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+      <%= javascript_include_tag 'application' %>
+</head>
 
-  <body>
-    <%= render "share/header" %>
-    <div class="container">
-      <%= notice %>
+<body>
+  <div class="outer">
+
+    <div class="header">
+      <%= render "share/header" %>
     </div>
-    <%= yield %>
-  </body>
+    
+    <div class="main">
+      <div class="container">
+        <%= notice %>
+      </div>
+      <%= yield %>
+    </div>
+    
+    <div class="footer">
+      <%= render "share/footer" %>
+    </div>
+    
+  </div>
+
+
+</body>
+
 </html>

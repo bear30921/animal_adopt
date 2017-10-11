@@ -60,15 +60,15 @@
 
   <div class="favorite">
     <% if not current_user && @cat.user_id == current_user.id %>
-    <%= link_to "O收藏",   favorite_cat_path(@cat, type: "favorite"), method: :put, class: "btn btn-green" %>
-    <%= link_to "X取消收藏", favorite_cat_path(@cat, type: "unfavorite"), method: :put, class: "btn btn-green" %>
+    <%= link_to "O收藏",   favorite_cat_path(@cat, type: "favorite"), method: :put, class: "btn btn-red" %>
+    <%= link_to "X取消收藏", favorite_cat_path(@cat, type: "unfavorite"), method: :put, class: "btn btn-red" %>
     <% end %>
     
     <% if current_user && @cat.user_id == current_user.id %>
-      <%= link_to "編輯", edit_cat_path(@cat), class: "btn btn-green" %>
-      <%= link_to "刪除", cat_path(@cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"}, class: "btn btn-green"%>
+      <%= link_to "編輯", edit_cat_path(@cat), class: "btn btn-red" %>
+      <%= link_to "刪除", cat_path(@cat), method: "delete", data: { confirm: "確認要刪除此筆資料嗎?"}, class: "btn btn-red"%>
     <% end %>
 
-    <%= link_to "回首頁",  cats_path,class: "btn btn-green" %>
+    <%= link_to "回首頁",  cats_path,class: "btn btn-red" %>
   </div>
 </div>

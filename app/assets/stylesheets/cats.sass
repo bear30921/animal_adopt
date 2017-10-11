@@ -1,8 +1,7 @@
-$color_green: #81D1B3
-$color_green2: #95CBD3
-$color_white: #F1F1F2
-$color_black: #3F5B5F
-$color_red: #E5266C
+$white-light: #F1F1F2
+$black-light: #3F5B5F
+$red: #E5266C
+$red-light: #DE8584
 
 // 共用屬性
 
@@ -11,19 +10,30 @@ $color_red: #E5266C
   -moz-box-sizing: border-box
   -webkit-box-sizing: border-box
 
-body
-  margin: 0
-  // height: 100%
-  background: $color_white
-
 html, body
-  // width: 100%
-  // height: 100%
   padding: 0
   margin: 0
 
+html,body 
+  height: 100%
+body 
+  margin: 0
+  background: $white-light
+
+.outer 
+    display: table
+    width: 100%
+    height: 100%
+
+  
+
+.footer 
+  height: 1px
+  display: table-row
+
+
 .header + div
-  padding-top: 40px
+  padding-top: 80px
 
 
 
@@ -40,7 +50,7 @@ li
 .container
   position: relative
   display: block
-  max-width: 960px
+  width: 960px
   margin: 0 auto
   // border: 1px solid black
 
@@ -55,26 +65,28 @@ li
   padding: 10px
   text-align: center
   border-radius: 2px
-  background-color: $color_black
+  background-color: $black-light
   color: white
   transition: all .3s
-  &:hover
-    background-color: $color_green2
+  
   
 
-.btn-green
-  background-color: $color_green
+.btn-red
+  background-color: $red-light
   color: white
   margin-top: 10px
   transition: all .3s
   &:hover
     transform: scale(1.2)
-    background-color: $color_black
+    background-color: $black-light
     
 .btn-black
-  background-color: $color_black
+  background-color: $black-light
   color: white
   padding: 5px  
+
+.devise-btn
+  margin: 20px 0
 
 
 img
@@ -120,28 +132,38 @@ td
 // _header.html.erb
 
 .header
-  background-color: $color_green2
+  background: #ed6ea0 /* Old Browsers */
+  background: -webkit-linear-gradient(left,#ed6ea0,#ec8c69) /*Safari 5.1-6*/
+  background: -o-linear-gradient(left,#ed6ea0,#ec8c69) /*Opera 11.1-12*/
+  background: -moz-linear-gradient(left,#ed6ea0,#ec8c69) /*Fx 3.6-15*/
+  background: linear-gradient(to right, #ed6ea0, #ec8c69) /*Standard*/
   ul
     float: right
     li
       float: left
       a
         text-decoration: none
-        padding: 20px 50px  
+        padding: 25px 50px  
         font-size: 20px
-        color: $color_black
+        color: white
         transition: all .3s
         &:hover
-          background-color: $color_black
+          background-color: $black-light
           color: white
 
-
+*
+  // border: 1px solid black
 // _footer.html.erb
 .footer
-  background-color: $color_black
-  height: 20px
-  // margin-top: 50px
+  background-color: $black-light
+  text-align: center
+  .container
+    padding: 20px 0
 
+    a
+      text-decoration: none
+    p, a
+      color:  white
 // _form.html.erb
 .cats-edit
   background-color: white
@@ -163,6 +185,7 @@ td
         padding: 5px 0
     
     textarea
+      width: 100%
       height: 60px
     .send
       text-align: center
@@ -170,6 +193,7 @@ td
 .favorite
   margin-top: 50px
   text-align: center
+  padding-bottom: 80px
   a
     text-decoration: none
     display: inline-block
@@ -201,7 +225,7 @@ td
   input[type="submit"]
     border: none
     cursor: pointer
-    background-color: $color_green
+    background-color: $red-light
     color: white
 
 .cats-list
@@ -219,7 +243,7 @@ td
   .photo
     text-align: center
     cursor: pointer
-    max-width: 200px
+    width: 200px
     height: 200px
     margin: 15px auto
     margin-top: initial
@@ -236,7 +260,7 @@ td
     td
       padding: 3px 0
 
-.btn-green:hover
+.btn-red:hover
   transform: none
 
   
@@ -254,7 +278,7 @@ td
   
 
 .active
-  background-color: $color_red
+  background-color: $red
   color: white
   padding: 2px 10px
   border-radius: 2px
@@ -303,6 +327,7 @@ td
 // favorite_list.html.erb
 
 .favorite-list
+  padding-bottom: 80px
   
   .container
     background-color: white
@@ -324,16 +349,17 @@ td
 
 //user edit
 .user-edit
+  padding-bottom: 20px
   .container
     padding-bottom: 50px
     .center
-      max-width: 600px
+      width: 600px
       text-align: left
       margin: 0 auto
       background-color: white
       .title
         margin-bottom: 10px
-        background-color: $color_green
+        background-color: $red-light
         color: white
         padding: 20px
       .position
@@ -347,24 +373,48 @@ td
         input
           width: 50%
           padding: 5px
+        input[type=submit]
+          border: none
+          background-color: $red-light
+          color: white
+          margin-top: 10px
+          border-radius: 2px
+          transition: all 0.3s
+          padding: 10px
+          font-size: 16px
+          cursor: pointer
+          &:hover
+            background-color: $black-light
+
       
-        .btn-green
+        .btn-red
           width: 50%
           margin-bottom: 30px
 
 
 // user-new
 
-.user-new, .user-signup
-  .hold
+.user-new .hold, .user-signup .hold
     margin-bottom: 20px
     height: 40px
+
+
 // page
   
-.previous_page, .next_page
-  // border: 1px solid $color_black
-  // background-color: white
-  padding: 2px
+.pagination
+  margin-bottom: 50px
+  // padding-bottom: 80px
+  .current
+    background-color: $red-light
+    color: white
+  a
+    text-decoration: none
+  .previous_page, .next_page, .current, a
+    // border: 1px solid black
+    padding: 2px 10px
+
+
+    
 
 
 
