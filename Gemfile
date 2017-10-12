@@ -72,6 +72,9 @@ gem 'devise'
 gem 'will_paginate', '~> 3.1.0'
 gem 'hirb-unicode'
 
+gem 'aws-sdk', '~> 2.3'
+
+
 
 
 
