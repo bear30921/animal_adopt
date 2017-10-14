@@ -1,3 +1,5 @@
+
+
 <div class="favorite-list">
   <div class="container">
 
@@ -5,6 +7,7 @@
     <table>
       <thead>
         <tr>
+          <th></th>
           <th>照片</th>
           <th>狀態</th>
           <th>城市</th>
@@ -18,6 +21,7 @@
         <% @favorites.each do |favorite| %>
         <tbody>
           <tr>
+            <td><%= link_to "移除",  list_path(favorite), method: "delete", data: { confirm: "確認要從收藏名單移除嗎?"}, class: "btn btn-red" %></td>
             <td><%= image_tag favorite.avatar.url(:thumb) %></td>
             <td><span class="active"><%= favorite.is_adopt %></span></td>
             <td><%= city(favorite.city) %></td>

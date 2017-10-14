@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   end
 
   get "/lists", to: "cats#favorite_list"
+  delete "/lists/:id", to: "cats#favorite_remove", as: 'list'
+
 
 
   root "cats#index"

@@ -1,20 +1,21 @@
 class CatsController < ApplicationController
 
-  before_action :authenticate_user! , only: [:new, :favorite]
+  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy, :favorite_list, :favorite_remove, :favorite]
 
 
-  def favorite_list
-    @favorites = current_user.favorite_animal
-  end
+  
+
 
   def index
-    
-    if params[:keyword] || params[:region] || params[:animal]
-      @cats = Cat.paginate(:page => params[:page], :per_page => 8).order('id DESC').where("city LIKE ? AND age LIKE ? AND animal_type LIKE ?", "%#{params[:region]}", "%#{params[:keyword]}", "%#{params[:animal]}")
+    if params[:age] || params[:region] || params[:animal]
+      # letters = ["%#{(params[:region])}%"]
+
+
+      @cats = Cat.paginate(:page => params[:page], :per_page => 8).order("id DESC").where("city::text LIKE ? AND animal_type::text LIKE ? AND age::text LIKE ?", "%#{params[:region]}", "%#{params[:animal]}%", "%#{params[:age]}%")
 
 
     else
-      @cats = Cat.paginate(:page => params[:page], :per_page => 8).order('id DESC')
+      @cats = Cat.paginate(:page => params[:page], :per_page => 8).order("id DESC")
     end
   end
 
@@ -63,16 +64,39 @@ class CatsController < ApplicationController
     
   end
 
+
+  def favorite_list
+    @favorites = current_user.favorite_animal
+  end
+
+
+  def favorite_remove
+    @cat = Cat.find_by(id: params[:id])
+    current_user.favorites.find_by(cat_id: @cat.id).delete if @cat
+
+    redirect_to lists_path, notice: "從收藏名單移除"
+  end
+
+
   def favorite
     @cat = Cat.find_by(id: params[:id])
     type = params[:type]
+    check_list = current_user.favorites.find_by(cat_id: @cat.id)
     if type == "favorite"
-      current_user.favorite_animal << @cat
-      redirect_to cat_path, notice: "#{@cat.name}收藏成功"
+      if !check_list
+        current_user.favorite_animal << @cat
+        redirect_to cat_path, notice: "#{@cat.name}收藏成功"
+      else
+        redirect_to cat_path, notice: "已經在收藏名單內"
+      end
 
     else type == "unfavorite"
-      current_user.favorite_animal.delete(@cat)
-      redirect_to cat_path, notice: "#{@cat.name}取消收藏"
+        if  check_list
+          current_user.favorite_animal.delete(@cat)
+          redirect_to cat_path, notice: "#{@cat.name}取消收藏"
+        else
+          redirect_to cat_path, notice: "沒有在收藏名單內"
+        end      
     end
   end
 
