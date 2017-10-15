@@ -11,6 +11,7 @@ Version
 First time ! You can running following command line in terminal
 
 $ bundle install
+
 $ rails db:migrate
 
 
