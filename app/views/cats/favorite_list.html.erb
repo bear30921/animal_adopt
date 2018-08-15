@@ -22,7 +22,12 @@
         <tbody>
           <tr>
             <td><%= link_to "移除",  list_path(favorite), method: "delete", data: { confirm: "確認要從收藏名單移除嗎?"}, class: "btn btn-red" %></td>
-            <td><%= image_tag favorite.avatar.url(:thumb) %></td>
+            <% if favorite.avatar.url(:thumb) %>
+              <td><%= image_tag favorite.avatar.url(:thumb) %></td>
+            <% else %>
+              <td><img src="https://picsum.photos/g/100/100"></td>
+            <% end %> 
+            
             <td><span class="active"><%= favorite.is_adopt %></span></td>
             <td><%= city(favorite.city) %></td>
             <td><%= favorite.name %></td>

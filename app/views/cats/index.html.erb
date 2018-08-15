@@ -44,7 +44,11 @@
         </div>
         <div class="photo">
           <%= link_to cat do %>
-            <%= image_tag cat.avatar.url(:medium) %>
+            <% if cat.avatar.url(:medium) %>
+              <%= image_tag cat.avatar.url(:medium) %>
+            <% else %>
+              <img src="https://picsum.photos/g/400/400">
+            <% end %>
           <% end %>
         </div>
         <div class="info">

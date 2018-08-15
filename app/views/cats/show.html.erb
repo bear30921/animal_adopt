@@ -8,7 +8,11 @@
     
     <div class="row clearfix">
       <div class="photo col-5">
-        <%= image_tag @cat.avatar.url(:medium) %>
+        <% if @cat.avatar.url(:medium) %>
+          <%= image_tag @cat.avatar.url(:medium) %>
+        <% else %>
+          <img src="https://picsum.photos/g/400/400">
+        <% end %>
       </div>
       <div class="col-7">
         <h2 class="title">動物詳細資料</h2>

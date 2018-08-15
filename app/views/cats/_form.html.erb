@@ -5,7 +5,11 @@
   <div class="col-5">
     <div id="target">
     <% if not cat.avatar_file_name.nil? %>
-      <%= image_tag cat.avatar.url(:medium) %>
+      <% if cat.avatar.url(:medium) %>
+        <%= image_tag cat.avatar.url(:medium) %>
+      <% else %>
+        <img src="https://picsum.photos/g/400/400">
+      <% end %>
     <% else %>
       <img src="http://fakeimg.pl/400x400/" alt="">
     <% end %>
